@@ -1,0 +1,19 @@
+{% include './head.html' %}
+{%load crispy_forms_tags %} 
+    <p>Logout Succeed!<span id="sp">5</span>seconds back to the login page...</p>
+    <script>
+     onload=function () {
+     setInterval(go,1000)
+     };
+     var x=4;
+     function go() {
+    
+     if (x>=0){
+      document.getElementById("sp").innerText=x;
+     }else {
+      location.href="../" rel="external nofollow" rel="external nofollow" ;
+     }
+     x--;
+     }
+    </script>
+    </body>

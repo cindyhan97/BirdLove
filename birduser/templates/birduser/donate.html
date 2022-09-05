@@ -1,0 +1,44 @@
+{% include  "./head.html"%}
+{%load crispy_forms_tags %}
+{%block content%}
+<div class="d-flex align-items-center justify-content-center h-100">
+<div class="container-xxl py-5">
+    <div class="container">
+
+      <div class="row g-5 mb-5 align-items-end wow fadeInUp" data-wow-delay="0.1s">
+        <div class="d-flex align-items-center justify-content-center">
+
+        <div class="card shadow-lg p-3 mb-5 bg-body rounded" style="width: 40%">
+        <div class="card-body" >
+
+        <button type="button" class = "btn btn-primary-outline" onClick="javascript:history.go(-1);"style ="margin: 2%">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+                        </svg>
+                </button>
+        <div class="d-flex flex-column align-items-center justify-content-center">
+        <div class = "container" style = "width: 90%">
+
+        <p>According to the Membership Level {{level}}, Your Maximum Donation Amount is {{max}}, Minimum Amount:{{min}} </p>
+        <form method="post" style = "margin-bottom: 10%" action="../donate/{{level}}" enctype='multipart/form-data'>          
+        {% csrf_token %}
+        <label for="quantity">Donation Amount:</label>
+        <input type="number" class = "form-control" id="amount" name="amount" min={{min}} max={{max}} value={{min}}>
+            {{donationform|crispy}}
+        <div class = "d-flex justify-content-center">
+        <input type="submit" class = "btn btn-primary btn-lg" name="submit" 
+                value="Continue with Paypal" style = "margin-top : 5%"/></div>
+        </form>
+    </div>
+</div>
+
+
+    </div></div>
+
+    </div>
+    </div>
+
+    </div>
+</div></div>
+
+        {% endblock %}

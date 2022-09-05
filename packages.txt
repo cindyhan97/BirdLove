@@ -1,0 +1,8 @@
+pillow
+djangorestframework
+django-bootstrap5
+markdown
+django-crispy-forms
+crispy_bootstrap5
+pip install django-address
+django-simpleui

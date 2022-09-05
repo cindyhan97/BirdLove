@@ -1,0 +1,123 @@
+{% include  "./head.html"%}
+{% load static %}
+
+{%load crispy_forms_tags %}
+{%block content%}
+<div class="mx-auto" style="width: 90%">
+<div class="row g-5 mb-5 align-items-end wow fadeInUp" data-wow-delay="0.1s">
+<div class="card shadow-lg p-3 mb-5 bg-body rounded">
+<div class="card-body" >
+  
+<form action="../profile" method="post" class="form" enctype='multipart/form-data'>
+<div class="d-flex flex-row">
+
+  <div class="card p-3 mb-5 bg-body rounded"style="width:60%;height: 40%;">
+    <div class="card-body" >
+      {%crispy addressform%}
+    </div>
+  </div>
+  <div class="card p-3 mb-5 bg-body rounded" style="height: 50%;">
+    <div class="card-body" >
+     {% crispy nameform%}
+    </div>
+  </div>
+
+
+
+
+
+
+<div class="card p-3 mb-5 bg-body rounded">
+<div class="card-body" >
+
+{% csrf_token %}
+{% if userAvatar_url%}
+<div class="d-flex justify-content-center">
+<img src="{{userAvatar_url}}" height="100px" width="100px" id = "icon_preview">
+</div>
+{% endif %}
+{%crispy user_profile%}
+</div></div>
+</div>
+
+
+<div class="card rounded">
+<div class="card-body" >
+<div class= "row" style="overflow-y: auto;">
+  <table class="table table-striped">
+    <thead>
+      <h2>User History</h2>
+      <tr>
+        <th scope="col">Time</th>
+        <th scope="col">Progress</th>
+        <th scope="col">Type</th>
+        <th scope="col">Description</th>
+        <th scope="col">Reference</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for obj in adoptionHistory %}
+      <tr>
+        <th scope="row">{{obj.time}}</th>
+        <td>{{ obj.progress }} </td>
+        <td>Bird Pet Adoption</td>
+        <td>Requester: {{ obj.requester }}, Adopter :{{ obj.adopter }}</td>
+        <td>{{ obj.id }}</td>
+      </tr>
+      {%endfor%}
+      {% for obj in requestHistory %}
+      <tr>
+        <th scope="row">{{obj.requestTime }}</th>
+        <td>{{ obj.progress }} </td>
+        <td>Bird Rescue Request</td>
+        <td>{{ obj.resuceDescription |truncatewords:5}}</td>
+        <td>{{ obj.id }}</td>
+      </tr>
+      {%endfor%}
+      {% for obj in donationHistory %}
+      <tr>
+        <th scope="row">{{obj.transitionTime}}</th>
+        <td>Payment Success: {{ obj.success }} </td>
+        <td>Donation</td>
+        <td>Amount: {{ obj.amount }}</td>
+        <td>{{ obj.id }}</td>
+      </tr>
+      {%endfor%}
+    </tbody>
+  </table>
+
+
+</div>
+</div>
+</div>
+
+<div class="d-flex justify-content-center"><input type="submit" class = "btn btn-primary btn-lg" name="submit" value="Submit" /></div>
+
+
+</form>
+
+
+</div>
+</div>
+</div>
+</div>
+<script>
+    document.getElementById("id_avatar").addEventListener("change", function() {
+      if (document.getElementById('id_avatar').files && document.getElementById('id_avatar').files[0]) {
+        var reader = new FileReader();
+        
+        reader.onload = function(e) {
+        document.getElementById(`icon_preview`).src = e.target.result
+        }
+        
+        reader.readAsDataURL(document.getElementById('id_avatar').files[0]);
+      }
+    });
+    
+    $("#id_avatar").change(function() {
+      readURL(this);
+    });
+
+</script>
+
+{% endblock %}

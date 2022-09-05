@@ -1,0 +1,14 @@
+{% include './head.html' %}
+{%load crispy_forms_tags %} 
+    <p>Login Failed! Please check your username or password to login again! There is still <span id="sp">5</span> seconds back to the login page...</p>
+    <script>
+        var count = 5;
+        setInterval(function(){
+            count--;
+            document.getElementById('sp').innerHTML = count;
+            if (count == 0) {
+                window.location = '../'; 
+            }
+        },1000);
+    </script>
+    </body>

@@ -1,0 +1,24 @@
+{% include  "./head.html"%}
+{%load crispy_forms_tags %}
+{% block content %}
+<div class="d-flex align-items-center justify-content-center h-75">
+    <div class="row g-5 mb-5 align-items-end wow fadeInUp" data-wow-delay="0.1s">
+    <div class="card shadow-lg p-3 mb-5 bg-body rounded">
+    <div class="card-body" >
+
+{% if user.is_authenticated %}
+<text>U are logined!</text>
+{%else%}
+<form action="../login" method="post" class="form">
+    {% csrf_token %}
+    {{ userloginForm|crispy }}
+    <div class="d-flex align-items-center justify-content-center h-100">
+    <input type="submit" class = "btn btn-primary btn-lg" style = "margin-top : 10" name="submit" value="Submit" />
+    </div>
+</form>
+{%endif%}
+{% endblock %}
+
+</div></div></div></div>
+</body>
+</html>

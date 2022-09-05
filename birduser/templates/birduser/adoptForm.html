@@ -1,0 +1,124 @@
+{% include  "./head.html"%}
+{%load crispy_forms_tags %}
+{% block content %}
+<div class="row g-5 mb-5 align-items-end wow fadeInUp" data-wow-delay="0.1s">
+<div class="d-flex align-items-center justify-content-center">
+<div class="container-sm">
+<div class="card shadow-lg p-5 mb-5 bg-body rounded " style="height: 50rem;">
+<div class="card-body" style="overflow-y: auto; padding: 5%;">
+
+    <h2>Send Us the Information, We can help birds together!</h2>
+    <div class="d-flex flex-row-reverse">
+    <a href="../adopt" class="btn btn-primary btn-lg disabled" role="button" aria-disabled="true">Adopt</a>
+    <a href="../help" class="btn btn-primary btn-lg" role="button" aria-disabled="true">Rescue</a>
+    </div>
+    <div class="d-flex flex-row justify-content-between mb-3">
+        <form action="../adopt" method="post" class="form" enctype='multipart/form-data'>{% csrf_token %}
+            {% crispy birdAdoptForm%}
+              <div class="row">
+                <div class="col-2">
+                <div class="image-area mt-4"><img class="img-responsive" id="imageResult-0" height = "125px" width="125px" src="https://user-images.githubusercontent.com/101482/29592647-40da86ca-875a-11e7-8bc3-941700b0a323.png" alt="" ></div>
+                <input id="upload-0" type = "file" name = "upload-0" class = "form-control form-control-sm" /></div>
+                <div class="col-2">
+                <div class="image-area mt-4"><img class="img-responsive" id="imageResult-1" height = "125px" width="125px"src="https://user-images.githubusercontent.com/101482/29592647-40da86ca-875a-11e7-8bc3-941700b0a323.png" alt="" ></div>
+                <input id="upload-1" type="file" name = "upload-1"  class = "form-control form-control-sm"></div>
+                <div class="col-2">
+                <div class="image-area mt-4"><img class="img-responsive" id="imageResult-2" height = "125px" width="125px" src="https://user-images.githubusercontent.com/101482/29592647-40da86ca-875a-11e7-8bc3-941700b0a323.png" alt="" ></div>
+                <input id="upload-2" type="file" name = "upload-2" class = "form-control form-control-sm"></div>
+                <div class="col-2">
+                  <div class="image-area mt-4"><img class="img-responsive" id="imageResult-3" height = "125px" width="125px"src="https://user-images.githubusercontent.com/101482/29592647-40da86ca-875a-11e7-8bc3-941700b0a323.png" alt="" ></div>
+                  <input id="upload-3" type="file" name = "upload-3" class = "form-control form-control-sm"></div>
+                  <div class="col-2">
+                  <div class="image-area mt-4"><img class="img-responsive" id="imageResult-4" height = "125px" width="125px"src="https://user-images.githubusercontent.com/101482/29592647-40da86ca-875a-11e7-8bc3-941700b0a323.png" alt="" ></div>
+                  <input id="upload-4" type="file" name = "upload-4" class = "form-control form-control-sm"></div>
+                  <div class="col-2">
+                  <div class="image-area mt-4"><img class="img-responsive" id="imageResult-5" height = "125px" width="125px"src="https://user-images.githubusercontent.com/101482/29592647-40da86ca-875a-11e7-8bc3-941700b0a323.png" alt="" ></div>
+                  <input id="upload-5" type="file" name = "upload-5" class = "form-control form-control-sm"></div>
+              </div>
+        </div>
+
+        <div class="d-flex align-items-center justify-content-center">
+            <input type="submit" class = "btn btn-primary btn-lg" style = "margin-top : 10" name="submit" value="Submit" /></div>
+            </div>
+
+        </form>
+
+
+
+</div></div></div></div></div>
+{% endblock %}
+
+<script>
+    document.getElementById("upload-0").addEventListener("change", function() {
+      if (document.getElementById('upload-0').files && document.getElementById('upload-0').files[0]) {
+        var reader = new FileReader();
+        
+        reader.onload = function(e) {
+        document.getElementById(`imageResult-0`).src = e.target.result
+        }
+        
+        reader.readAsDataURL(document.getElementById('upload-0').files[0]);
+      }
+    });
+  
+    document.getElementById("upload-1").addEventListener("change", function() {
+      if (document.getElementById('upload-1').files && document.getElementById('upload-1').files[0]) {
+        var reader = new FileReader();
+        
+        reader.onload = function(e) {
+        document.getElementById(`imageResult-1`).src = e.target.result
+        }
+        
+        reader.readAsDataURL(document.getElementById('upload-1').files[0]);
+      }
+    });
+  
+    document.getElementById("upload-2").addEventListener("change", function() {
+      if (document.getElementById('upload-2').files && document.getElementById('upload-2').files[0]) {
+        var reader = new FileReader();
+        
+        reader.onload = function(e) {
+        document.getElementById(`imageResult-2`).src = e.target.result
+        }
+        
+        reader.readAsDataURL(document.getElementById('upload-2').files[0]);
+      }
+    });
+  
+    document.getElementById("upload-3").addEventListener("change", function() {
+      if (document.getElementById('upload-3').files && document.getElementById('upload-3').files[0]) {
+        var reader = new FileReader();
+        
+        reader.onload = function(e) {
+        document.getElementById(`imageResult-3`).src = e.target.result
+        }
+        
+        reader.readAsDataURL(document.getElementById('upload-3').files[0]);
+      }
+    });
+  
+    document.getElementById("upload-4").addEventListener("change", function() {
+      if (document.getElementById('upload-4').files && document.getElementById('upload-4').files[0]) {
+        var reader = new FileReader();
+        
+        reader.onload = function(e) {
+        document.getElementById(`imageResult-4`).src = e.target.result
+        }
+        
+        reader.readAsDataURL(document.getElementById('upload-4').files[0]);
+      }
+    });
+    document.getElementById("upload-5").addEventListener("change", function() {
+      if (document.getElementById('upload-5').files && document.getElementById('upload-5').files[0]) {
+        var reader = new FileReader();
+        
+        reader.onload = function(e) {
+        document.getElementById(`imageResult-5`).src = e.target.result
+        }
+        
+        reader.readAsDataURL(document.getElementById('upload-5').files[0]);
+      }
+    });
+  </script>
+</body>
+</html>

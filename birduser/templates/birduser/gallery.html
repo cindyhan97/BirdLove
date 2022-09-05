@@ -1,0 +1,49 @@
+{% load static %}
+{% include  "./head.html"%}
+{%load crispy_forms_tags %}
+
+
+<div class="d-flex flex-row">
+    <div class = "d-inline-flex p-2 bd-highlight" style = "margin: 20px;width:30%">
+        <div class="card rounded" style = "height: 40%">
+            <div class="card-body" >
+                <label >Search a adoptable Bird Pet now!</label>
+                  <div class="input-group input-group-sm mb-3" style = "margin-top : 20px">
+                    <span class="input-group-text" id="inputGroup-sizing-sm"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                      </svg></span>
+                    <input type="text" class="form-control">
+                  </div>
+        
+    </div> </div> </div>
+
+
+<div class = "row" style = "margin: 20px">
+{% for obj in birds reversed%}
+    {% for pict in picts%}
+        {% if pict.bird.id == obj.id %}
+        <div class="card" style="width: 20rem; margin: 10px">
+        {% if pict.pict%}
+        <img class="card-img-top" src="{{pict.pict.url}}" height="200px" alt="">
+        {%endif%}
+        <div class="card-body">
+            <h5 class="card-title" id = "species">{{obj.name}}</h5>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item" id = "species">{{obj.species}}</li>
+                <li class="list-group-item" id = "age">{{obj.age}}</li>
+              </ul>
+            <p class="card-text">{{obj.adoptDescription|truncatewords:5}}</p>
+            <a href="../bird/{{obj.id}}" class="btn btn-primary">Apply Now!</a></div></div>
+        {%endif%}
+    {%endfor%}
+{%endfor%}
+
+</div>
+
+
+</div>
+
+
+<script>
+
+</script>

@@ -1,0 +1,52 @@
+{% include  "./head.html"%}
+{%load crispy_forms_tags %}
+{% block content %}
+<button type="button" class = "btn btn-primary-outline" onClick="javascript:history.go(-1);"style ="margin: 5%">
+    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+          </svg>
+</button>
+<div class="container-xxl py-5">
+    <div class="container">
+
+      <div
+        class="row g-5 mb-5 align-items-end wow fadeInUp" data-wow-delay="0.1s">
+        <div class="col-lg-6">
+          <h1 class="display-5 mb-0"><span class="text-primary">{{bird.name}}<br>species: {{bird.species}}
+          </h1>
+          <p>{{bird.adoptDescription}}</p>
+        </div>
+        <div class="col-lg-6 text-lg-end">
+            <form action="" method="post" class="form" enctype='multipart/form-data'>{% csrf_token %}
+                <input type="submit" onclick="popup()" class = "btn btn-primary btn-lg" style = "margin-top : 10" name="submit" value="Apply Now!" />
+            </form>
+        </div>
+      </div>
+      <div class="row">
+        {% for pict in pictlst%}
+        <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+          <div class="row g-4">
+            <div class="col-12">
+              <a
+                class="animal-item"
+                href="img/animal-md-1.jpg"
+                data-lightbox="animal">
+                <div class="position-relative">
+                  <img class="img-fluid" src="{{pict.pict.url}}" alt="" />
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+        {%endfor%}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    function popup() {
+      alert("Apply Successful");
+    }
+    </script>
+{% endblock %}
